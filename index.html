@@ -27,7 +27,13 @@
           @apply flex items-center space-x-1 px-2.5 py-1.5 rounded bg-transparent transition-colors duration-100 ease-in-out hover:bg-white hover:text-blue-900;
         }
         .nav-submenu {
-          @apply absolute left-0 top-[55px] bg-white text-black pb-4 pt-8 px-10 opacity-0 rounded shadow-lg -translate-x-4 transform transition-all duration-300 group-hover:opacity-100 group-hover:visible group-hover:translate-x-0;
+          @apply absolute left-0 top-[55px] bg-white text-black pb-4 pt-8 px-10 rounded shadow-lg
+           opacity-0 invisible
+           -translate-y-2 transform
+           transition-all duration-200 ease-in-out
+           group-hover:opacity-100
+           group-hover:translate-y-0
+           group-hover:visible;
         }
         .nav-submenu li {
           @apply py-3 border-b border-gray-200 font-normal text-base w-full min-w-48;
@@ -190,7 +196,8 @@
         <span class="border-l border-gray-400 h-10 mx-4"></span>
         <!-- Actions -->
         <div class="flex items-center space-x-3">
-          <button class="border-2 border-gray-300 font-semibold px-2 py-1 rounded space-x-2">
+          <button
+            class="border-2 border-gray-300 font-semibold px-2 py-1 rounded space-x-2 hover:bg-white duration-200 hover:text-[#00157c]">
             <i class="fa-regular fa-envelope"></i><span class="text-[0.9rem]">Subscribe</span>
           </button>
           <a href="#">Log In</a>
