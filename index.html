@@ -51,16 +51,10 @@
           @apply flex items-center space-x-1 px-2.5 py-1.5 rounded bg-transparent transition-colors duration-100 ease-in-out hover:bg-white hover:text-main text-[0.9rem] font-semibold;
         }
         .nav-submenu {
-          @apply absolute left-0 top-[55px] bg-white text-black pb-4 pt-8 px-10 rounded shadow-lg
-           opacity-0 invisible
-           -translate-y-2 transform
-           transition-all duration-200 ease-in-out
-           group-hover:opacity-100
-           group-hover:translate-y-0
-           group-hover:visible;
+          @apply z-10 absolute left-0 top-[55px] bg-white text-black pb-4 pt-8 px-10 rounded shadow-lg opacity-0 invisible -translate-x-4 transform transition-all duration-300 ease-in-out group-hover:opacity-100 group-hover:translate-x-0 group-hover:visible;
         }
         .nav-submenu li {
-          @apply py-3 border-b border-gray-200 font-normal text-base w-full min-w-48;
+          @apply py-3 border-b border-gray-300 font-normal text-base w-full min-w-48;
         }
         .nav-submenu a {
           @apply block whitespace-nowrap hover:text-blue-600 text-start;
@@ -70,7 +64,7 @@
           @apply container px-6 py-8 mt-4;
         }
         .section-container__header {
-          @apply flex justify-between items-center mb-6 border-b border-gray-200;
+          @apply flex justify-between items-center mb-6 border-b border-gray-300;
         }
         .section-container__header h2 {
           @apply text-xl font-semibold uppercase text-main pb-1 tracking-wider;
@@ -197,7 +191,7 @@
           @apply mt-1 text-sm text-gray-500 text-center;
         }
         .contributor-card__content hr {
-          @apply my-4 border-gray-200;
+          @apply my-4 border-gray-300;
         }
         .contributor-card__content a {
           @apply mt-auto text-lg font-medium text-gray-900 inline-flex group-hover:text-secondary;
@@ -205,13 +199,23 @@
         .contributor-card__content span {
           @apply ml-1 text-[#3557ff] self-end;
         }
+        /* TOOLS */
+        .tool-card {
+          @apply flex flex-col items-center space-y-2;
+        }
+        .tool-icon {
+          @apply w-64 h-64 object-contain;
+        }
+        .tool-title {
+          @apply text-2xl font-medium text-gray-900 group-hover:text-secondary;
+        }
         /* EDITORIAL PROCESS */
         .step-num {
           @apply text-3xl lg:text-4xl font-bold text-[#7384d8] mr-6 flex-none;
         }
         /* DOCTORS */
         .doctor-card {
-          @apply bg-white rounded-lg border border-gray-300 p-6 flex flex-col justify-between text-center transform transition-transform duration-500 ease-in-out font-normal hover:-translate-y-1.5 hover:shadow-lg hover:shadow-card w-[350px];
+          @apply bg-white rounded-lg border border-gray-300 p-6 flex flex-col justify-between text-center transform transition-transform duration-500 ease-in-out font-normal hover:-translate-y-1.5 hover:shadow-lg hover:shadow-card w-[350px] hover:cursor-pointer;
         }
         .doctor-card p {
           @apply text-xs;
@@ -419,7 +423,7 @@
       </div>
 
       <!-- Divider -->
-      <hr class="my-8 border-gray-200" />
+      <hr class="my-8 border-gray-300" />
 
       <!-- Secondary stories -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-20">
@@ -631,14 +635,14 @@
       <hr class="my-8 border-none" />
 
       <!-- Secondary stories -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-20 text-2xl text-pretty mb-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-20 text-2xl text-pretty mb-6 font-semibold">
         <!-- Story 1 -->
-        <a href="#" class="border-r border-gray-200 w-[400px] hover:text-secondary">
+        <a href="#" class="border-r border-gray-300 w-[400px] hover:text-secondary">
           <h4>How to Know If a Scary Health Headline Is Legit</h4>
         </a>
 
         <!-- Story 2 -->
-        <a href="#" class="border-r border-gray-200 w-[400px] hover:text-secondary">
+        <a href="#" class="border-r border-gray-300 w-[400px] hover:text-secondary">
           <h4>This Common Vaginal Issue Is Really an STD</h4>
         </a>
 
@@ -1031,10 +1035,60 @@
       <div class="section-container__header">
         <h2>Tools, Trackers & Calculators</h2>
       </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-5 gap-8 items-center text-center mb-8">
+        <a href="#" class="tool-card group">
+          <img
+            src="https://img.lb.wbmdstatic.com/vim/live/webmd/consumer_assets/site_images/home_page/tools-bmi.png?resize=484px:*&output-quality=70"
+            alt="BMI Calculator"
+            class="tool-icon" />
+          <span class="tool-title">BMI Calculator</span>
+        </a>
+        <a href="#" class="tool-card group">
+          <img
+            src="https://img.lb.wbmdstatic.com/vim/live/webmd/consumer_assets/site_images/home_page/tools-ovulation-calculator.png?resize=484px:*&output-quality=70"
+            alt="Ovulation Calculator"
+            class="tool-icon" />
+          <span class="tool-title">Ovulation Calculator</span>
+        </a>
+        <a href="#" class="tool-card group">
+          <img
+            src="https://img.lb.wbmdstatic.com/vim/live/webmd/consumer_assets/site_images/home_page/tools-cold-and-flu-icon.png?resize=484px:*&output-quality=70"
+            alt="Cold And Flu Map"
+            class="tool-icon" />
+          <span class="tool-title">Cold And Flu Map</span>
+        </a>
+        <a href="#" class="tool-card group">
+          <img
+            src="https://img.lb.wbmdstatic.com/vim/live/webmd/consumer_assets/site_images/home_page/tools-pill-identifier.png?resize=484px:*&output-quality=70"
+            alt="Pill Identifier"
+            class="tool-icon" />
+          <span class="tool-title">Pill Identifier</span>
+        </a>
+        <a href="#" class="tool-card group">
+          <img
+            src="https://img.lb.wbmdstatic.com/vim/live/webmd/consumer_assets/site_images/home_page/tools-drugs-interaction-checker.png?resize=484px:*&output-quality=70"
+            alt="Drugs Interaction Checker"
+            class="tool-icon" />
+          <span class="tool-title">Drugs Interaction Checker</span>
+        </a>
+      </div>
+
+      <hr class="border-t border-gray-300 mt-20" />
+
+      <!-- Pill links -->
+      <div class="flex flex-wrap gap-4 gap-y-8 mt-8">
+        <a href="#" class="topic-pill">Cat Health Tool</a>
+        <a href="#" class="topic-pill">Dog Health Tool</a>
+        <a href="#" class="topic-pill">Due Date Calculator</a>
+        <a href="#" class="topic-pill">Fitness Calorie Counter</a>
+        <a href="#" class="topic-pill">Kids BMI</a>
+        <a href="#" class="topic-pill">Visual Pregnancy Timeline</a>
+      </div>
     </section>
 
     <!-- Health A - Z -->
-    <section id="health" class="section-container">
+    <section id="health" class="section-container mt-20">
       <div class="section-container__header">
         <h2>Health A - Z</h2>
         <a href="https://www.webmd.com/a-to-z-guides/common-topics" class="section-container__viewall"> View All </a>
@@ -1348,7 +1402,7 @@
       <div class="container mx-auto px-4 space-y-8">
         <!-- header -->
         <div class="flex items-center justify-between">
-          <h2 class="text-3xl font-semibold text-blue-900">Top doctors in Lakeland, FL</h2>
+          <h2 class="text-3xl font-semibold text-blue-900">Top doctors in Miami, FL</h2>
           <span class="text-sm text-gray-600">Sponsored Results</span>
         </div>
 
@@ -1361,7 +1415,7 @@
                 <img
                   src="https://img.lb.wbmdstatic.com/lhd/provider_prod/2728162_providerprofileimage_6e507ac1-3a3b-482a-95cc-8cb5e3324543.jpg"
                   alt="Abby Guirguis"
-                  class="rounded-full w-full h-full object-cover border border-gray-200" />
+                  class="rounded-full w-full h-full object-cover border border-gray-300" />
               </div>
               <h3 class="text-xl font-semibold text-gray-900">Abby Guirguis, APRN‑CNP</h3>
               <p class="text-sm text-gray-600">
@@ -1405,7 +1459,7 @@
                 <img
                   src="https://mdxvitals-res.cloudinary.com/private_images/q_auto/professionals/1761515/photo.jpg"
                   alt="Dr. Khadim"
-                  class="rounded-full w-full h-full object-cover border border-gray-200" />
+                  class="rounded-full w-full h-full object-cover border border-gray-300" />
               </div>
               <h3 class="text-xl font-semibold text-gray-900">Dr. Ghazanfar Khadim, MD</h3>
               <p class="text-sm text-gray-600">
@@ -1446,7 +1500,7 @@
                 <img
                   src="https://img.lb.wbmdstatic.com/lhd/provider_prod/3988641_providerprofileimage_5fd947fe-531b-486d-9bea-6ccaf952b395.png"
                   alt="Dr. Patel"
-                  class="rounded-full w-full h-full object-cover border border-gray-200" />
+                  class="rounded-full w-full h-full object-cover border border-gray-300" />
               </div>
               <h3 class="text-xl font-semibold text-gray-900">Dr. Devan Arvind Patel, PharmD</h3>
               <p class="text-sm text-gray-600">
@@ -1484,7 +1538,7 @@
           <div class="flex w-auto h-12">
             <input
               type="text"
-              placeholder="Lakeland, FL 33813"
+              placeholder="Miami, 33101"
               class="flex‑1 px-4 py-2 rounded-l-md border border-gray-300 focus:outline-none" />
             <button
               class="bg-blue-600 hover:bg-btnhover text-white text-lg px-5 py-2 rounded-r-md flex flex-row items-center gap-2">
