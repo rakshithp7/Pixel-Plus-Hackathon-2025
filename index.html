@@ -10,7 +10,11 @@
       integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer" />
-    <link href="https://fonts.cdnfonts.com/css/source-sans-pro" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap"
+      rel="stylesheet" />
 
     <style>
       body {
@@ -21,10 +25,26 @@
       }
     </style>
 
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              main: '#00157c',
+              secondary: '#3557ff',
+            },
+          },
+        },
+      };
+    </script>
+
     <style type="text/tailwindcss">
       @layer components {
+        .container {
+          @apply max-w-[1240px] mx-auto;
+        }
         .nav-link {
-          @apply flex items-center space-x-1 px-2.5 py-1.5 rounded bg-transparent transition-colors duration-100 ease-in-out hover:bg-white hover:text-blue-900;
+          @apply flex items-center space-x-1 px-2.5 py-1.5 rounded bg-transparent transition-colors duration-100 ease-in-out hover:bg-white hover:text-blue-900 text-[0.9rem] font-semibold;
         }
         .nav-submenu {
           @apply absolute left-0 top-[55px] bg-white text-black pb-4 pt-8 px-10 rounded shadow-lg
@@ -41,12 +61,50 @@
         .nav-submenu a {
           @apply block whitespace-nowrap hover:text-blue-600 text-start;
         }
+        /* TOP STORIES */
+        .secondary-story {
+          @apply flex items-center transition w-[400px];
+        }
+        .secondary-story div {
+          @apply overflow-hidden flex-shrink-0;
+        }
+        .secondary-story img {
+          @apply max-w-[9.625rem] object-cover rounded-sm transform transition-transform duration-500 ease-in-out group-hover:scale-[1.18];
+        }
+        .secondary-story h4 {
+          @apply ml-4 font-semibold text-gray-900 text-lg transition-colors duration-300 group-hover:text-blue-600;
+        }
+        /* LIVING HEALTHY */
+        .card img {
+          @apply w-[232px] h-[321px] object-cover transform transition-transform duration-500 ease-in-out group-hover:scale-125;
+        }
+        .card h3 {
+          @apply absolute bottom-8 left-0 w-full text-center text-white text-[1.35rem] font-extrabold;
+        }
+        /* CONDITIONS */
+        .topic-grid {
+          @apply bg-blue-50 rounded-sm;
+        }
+        .topic-grid ul {
+          @apply grid grid-cols-2 md:grid-cols-4;
+        }
+        .topic-grid .noborder a {
+          @apply border-none;
+        }
+        .topic-link {
+          @apply text-gray-800 flex items-center space-x-2 font-normal text-[1.1rem] hover:text-blue-600
+           p-5 mx-4 border-b border-gray-200;
+        }
+        .topic-link i {
+          @apply text-blue-600;
+        }
       }
     </style>
   </head>
   <body class="antialiased">
-    <nav class="font-sans bg-[#00157c] text-white">
-      <div class="container mx-auto flex items-center h-[75px] space-x-4 place-content-center">
+    <!-- NAVBAR -->
+    <nav class="font-sans bg-main text-white">
+      <div class="container flex items-center h-[75px] place-content-center">
         <!-- Logo -->
         <!-- <a href="https://www.webmd.com/" class="flex items-center"> -->
         <a href="index.html" class="flex items-center">
@@ -56,13 +114,13 @@
             class="h-6" />
         </a>
         <!-- Primary menu -->
-        <ul class="flex items-center space-x-8">
+        <ul class="flex items-center space-x-4 ml-4">
           <!-- Conditions -->
           <li class="relative group">
             <button class="flex items-center space-x-1 nav-link">
               <span>Conditions</span>
               <i
-                class="fa-solid fa-chevron-down fa-xs text-current transform transition-transform duration-300 group-hover:rotate-180"></i>
+                class="fa-solid fa-chevron-down fa-xs transform transition-transform duration-300 group-hover:rotate-180"></i>
             </button>
 
             <!-- submenu -->
@@ -197,15 +255,287 @@
         <!-- Actions -->
         <div class="flex items-center space-x-3">
           <button
-            class="border-2 border-gray-300 font-semibold px-2 py-1 rounded space-x-2 hover:bg-white duration-200 hover:text-[#00157c]">
-            <i class="fa-regular fa-envelope"></i><span class="text-[0.9rem]">Subscribe</span>
+            class="flex border-2 border-gray-500 font-semibold px-2.5 py-1 rounded space-x-1 hover:bg-white duration-200 hover:text-main items-center">
+            <i class="fa-regular fa-envelope text-[16px]"></i><span>Subscribe</span>
           </button>
           <a href="#">Log In</a>
           <button class="p-2">
-            <i class="fa-solid fa-magnifying-glass"></i>
+            <i class="fa-solid fa-magnifying-glass fa-lg"></i>
           </button>
         </div>
       </div>
     </nav>
+
+    <!-- TODAY'S TOP STORIES -->
+    <section id="top-stories" class="container px-6 py-8">
+      <!-- Title -->
+      <h2 class="text-xl font-bold text-blue-900 border-b border-gray-200 pb-2 mb-8 uppercase">Today's Top Stories</h2>
+
+      <!-- Featured story -->
+      <div class="flex gap-6 group hover:cursor-pointer">
+        <div class="overflow-hidden rounded-sm flex-shrink-0 w-[484px] h-[323px]">
+          <img
+            src="https://img.lb.wbmdstatic.com/vim/live/webmd/consumer_assets/site_images/articles/health_tools/2024_ib_ai_slideshows/S1_GettyImages-1352919035_1800x1200.jpg?resize=800px:*&output-quality=70"
+            alt="Types of Headaches"
+            class="w-full h-full object-cover transform transition-transform duration-500 ease-in-out group-hover:scale-[1.18]" />
+        </div>
+
+        <!-- Text -->
+        <div class="flex flex-col justify-center">
+          <h3 class="text-4xl font-bold mb-3 transition-colors duration-300 group-hover:text-blue-600">
+            Types Of Headaches And Relief Options
+          </h3>
+          <p class="text-gray-500 text-[1.3rem] leading-relaxed font-normal">
+            A headache can be unbearable, but treatments like medications, home remedies, and lifestyle changes could
+            provide relief. Learn the best solutions for managing your headaches.
+          </p>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <hr class="my-8 border-gray-200" />
+
+      <!-- Secondary stories -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-20">
+        <!-- Story 1 -->
+        <div class="group">
+          <a href="#" class="secondary-story">
+            <div>
+              <img
+                src="https://img.lb.wbmdstatic.com/vim/live/webmd/consumer_assets/site_images/articles/health_tools/signs_youre_eating_too_much_salt_slideshow/1800ss_getty_rf_checking_blood_pressure.jpg?resize=240px:*&output-quality=70"
+                alt="High Blood Pressure" />
+            </div>
+            <h4>High Blood Pressure: Is Surgery the Answer?</h4>
+          </a>
+        </div>
+
+        <!-- Story 2 -->
+        <div class="group">
+          <a href="#" class="secondary-story">
+            <div>
+              <img
+                src="https://img.lb.wbmdstatic.com/vim/live/webmd/consumer_assets/site_images/articles/health_tools/parkinsons_disease_what_to_know_slideshow/1800ss_getty_rf_woman_holding_arm.jpg?resize=240px:*&output-quality=70"
+                alt="Parkinson's Symptoms" />
+            </div>
+            <h4>How to Identify Symptoms of Parkinson’s Disease</h4>
+          </a>
+        </div>
+
+        <!-- Story 3 -->
+        <div class="group">
+          <a href="#" class="secondary-story">
+            <div>
+              <img
+                src="https://img.lb.wbmdstatic.com/vim/live/webmd/consumer_assets/site_images/articles/health_tools/staying_healthy_with_bcell_therapy_slideshow/1800ss_getty_rf_woman_meditating.jpg?resize=240px:*&output-quality=70"
+                alt="Lose Weight at Night" />
+            </div>
+            <h4>Things You Can Do at Night to Lose Weight</h4>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- LIVING HEALTHY -->
+    <section id="living-healthy" class="container px-6 py-8 mt-[60px]">
+      <!-- header -->
+      <div class="flex justify-between items-center mb-6 border-b border-gray-200">
+        <h2 class="text-2xl font-bold uppercase text-main pb-1">Living Healthy</h2>
+        <a
+          href="https://www.webmd.com/living-healthy"
+          class="border-b-2 border-secondary text-secondary hover:bg-blue-50 pb-1 mb-[-8px]">
+          View All
+        </a>
+      </div>
+
+      <!-- cards -->
+      <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+        <!-- card 1 -->
+        <li class="group">
+          <div class="card">
+            <a href="https://www.webmd.com/mental-health/default.htm" class="block relative overflow-hidden rounded-lg">
+              <img
+                src="https://img.lb.wbmdstatic.com/vim/live/webmd/consumer_assets/site_images/home_page/living-healthy-mental-health.png?resize=484px:*&output-quality=70"
+                alt="Mental Health" />
+
+              <h3>Mental Health</h3>
+            </a>
+          </div>
+        </li>
+        <!-- card 2 -->
+        <li class="group">
+          <div class="card">
+            <a href="https://www.webmd.com/diet/default.htm" class="block relative overflow-hidden rounded-lg">
+              <img
+                src="https://img.lb.wbmdstatic.com/vim/live/webmd/consumer_assets/site_images/home_page/living-healthy-diet-weight-management.png?resize=484px:*&output-quality=70"
+                alt="Diet & Weight Management" />
+
+              <h3>Diet &amp; Weight Management</h3>
+            </a>
+          </div>
+        </li>
+        <!-- card 3 -->
+        <li class="group">
+          <div class="card">
+            <a href="https://www.webmd.com/healthy-aging/default.htm" class="block relative overflow-hidden rounded-lg">
+              <img
+                src="https://img.lb.wbmdstatic.com/vim/live/webmd/consumer_assets/site_images/home_page/living-healthy-healthy-aging.png?resize=484px:*&output-quality=70"
+                alt="Healthy Aging" />
+
+              <h3>Healthy Aging</h3>
+            </a>
+          </div>
+        </li>
+        <!-- card 4 -->
+        <li class="group">
+          <div class="card">
+            <a
+              href="https://www.webmd.com/sex-relationships/default.htm"
+              class="block relative overflow-hidden rounded-lg">
+              <img
+                src="https://img.lb.wbmdstatic.com/vim/live/webmd/consumer_assets/site_images/home_page/living-healthy-sex-relationships.png?resize=484px:*&output-quality=70"
+                alt="Sex & Relationships" />
+
+              <h3>Sex &amp; Relationships</h3>
+            </a>
+          </div>
+        </li>
+        <!-- card 5 -->
+        <li class="group">
+          <div class="card">
+            <a
+              href="https://www.webmd.com/fitness-exercise/default.htm"
+              class="block relative overflow-hidden rounded-lg">
+              <img
+                src="https://img.lb.wbmdstatic.com/vim/live/webmd/consumer_assets/site_images/home_page/living-healthy-fitness-exercise.png?resize=484px:*&output-quality=70"
+                alt="Fitness & Exercise" />
+              <h3>Fitness &amp; Exercise</h3>
+            </a>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- CONDITIONS -->
+    <section id="conditions" class="container px-6 py-8">
+      <!-- header -->
+      <div class="flex justify-between items-center mb-6 border-b border-gray-200">
+        <h2 class="text-2xl font-bold uppercase text-main pb-1">Conditions</h2>
+        <a
+          href="https://www.webmd.com/a-to-z-guides/health-topics"
+          class="border-b-2 border-secondary text-secondary hover:bg-blue-50 pb-1 mb-[-8px]">
+          View All
+        </a>
+      </div>
+
+      <div class="topic-grid">
+        <ul>
+          <li>
+            <a href="#" class="topic-link">
+              <!-- simple inline SVG arrow -->
+              <i class="fa-solid fa-arrow-right"></i>
+              <span>Women’s Health</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="topic-link">
+              <i class="fa-solid fa-arrow-right"></i>
+              <span>Depression</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="topic-link">
+              <i class="fa-solid fa-arrow-right"></i>
+              <span>Heart Failure</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="topic-link">
+              <i class="fa-solid fa-arrow-right"></i>
+              <span>Breast Cancer</span>
+            </a>
+          </li>
+        </ul>
+        <ul class="noborder">
+          <li>
+            <a href="#" class="topic-link">
+              <i class="fa-solid fa-arrow-right"></i>
+              <span>Rheumatoid Arthritis</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="topic-link">
+              <i class="fa-solid fa-arrow-right"></i>
+              <span>Lung Disease (COPD)</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="topic-link">
+              <i class="fa-solid fa-arrow-right"></i>
+              <span>Cancer</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="topic-link">
+              <i class="fa-solid fa-arrow-right"></i>
+              <span>Diabetes</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- HEALTH NEWS -->
+    <section id="health_news" class="container px-6 py-8">
+      <!-- header -->
+      <div class="flex justify-between items-center mb-6 border-b border-gray-200">
+        <h2 class="text-2xl font-bold uppercase text-main pb-1">Health News</h2>
+        <a
+          href="https://www.webmd.com/news/default.htm"
+          class="border-b-2 border-secondary text-secondary hover:bg-blue-50 pb-1 mb-[-8px]">
+          View All
+        </a>
+      </div>
+
+      <div class="flex gap-6 group hover:cursor-pointer">
+        <div class="overflow-hidden rounded-sm flex-shrink-0 w-[484px] h-[323px]">
+          <img
+            src="https://img.lb.wbmdstatic.com/vim/live/webmd/consumer_assets/site_images/articles/health_tools/bouncing_back_after_a_migraine_slideshow/1800ss_getty_rf_doctor_patient_consultation.jpg?resize=484px:*&output-quality=70"
+            alt="photo of doctor patient consultation"
+            class="w-full h-full object-cover transform transition-transform duration-500 ease-in-out group-hover:scale-[1.18]" />
+        </div>
+
+        <!-- Text -->
+        <div class="flex flex-col justify-center">
+          <h3 class="text-4xl font-bold mb-3 transition-colors duration-300 group-hover:text-blue-600">
+            Parkinson's Disease May Soon Outpace Dementia
+          </h3>
+          <p class="text-gray-500 text-[1.3rem] font-normal font-normal">
+            According to a study published last month, Parkinson's disease cases are expected to rise by 30% in North
+            America and double worldwide by 2050.
+          </p>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <hr class="my-8 border-none" />
+
+      <!-- Secondary stories -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-20 text-2xl text-pretty">
+        <!-- Story 1 -->
+        <a href="#" class="border-r border-gray-200 w-[400px]">
+          <h4>How to Know If a Scary Health Headline Is Legit</h4>
+        </a>
+
+        <!-- Story 2 -->
+        <a href="#" class="border-r border-gray-200 w-[400px]">
+          <h4>This Common Vaginal Issue Is Really an STD</h4>
+        </a>
+
+        <!-- Story 3 -->
+        <a href="#" class="w-[400px]">
+          <h4>FDA Issues Warning About Counterfeit Ozempic</h4>
+        </a>
+      </div>
+    </section>
   </body>
 </html>
