@@ -98,10 +98,23 @@
         .topic-link i {
           @apply text-blue-600;
         }
+        /* EXPERT INSIGHTS */
+        .playcard {
+          @apply relative block w-[144px] h-[96px] flex-shrink-0 overflow-hidden rounded-md;
+        }
+        .playicon {
+          @apply absolute top-0 right-0 bg-blue-600 p-1 rounded-sm;
+        }
+        .playicon i {
+          @apply w-4 h-4 text-center items-center flex place-content-center;
+        }
+        .playtext {
+          @apply ml-4 text-2xl font-semibold hover:text-blue-100 mt-4;
+        }
       }
     </style>
   </head>
-  <body class="antialiased">
+  <body>
     <!-- NAVBAR -->
     <nav class="font-sans bg-main text-white">
       <div class="container flex items-center h-[75px] place-content-center">
@@ -536,6 +549,118 @@
           <h4>FDA Issues Warning About Counterfeit Ozempic</h4>
         </a>
       </div>
+    </section>
+
+    <!-- EXPERT INSIGHTS -->
+    <section id="expert_insights" class="bg-[#000625] text-white p-8">
+      <div class="container pb-12 pt-6">
+        <!-- header -->
+        <div class="flex items-center">
+          <div class="flex items-center">
+            <img
+              src="https://img.lb.wbmdstatic.com/vim/live/webmd/consumer_assets/site_images/home_page/homepage-john-whyte-image.png"
+              alt="John Whyte, MD"
+              class="w-16 h-16 rounded-full object-cover bg-[#e1855b]" />
+            <div class="ml-4 w-[200px] font-normal">
+              <p class="text-lg">Expert Insights From</p>
+              <p class="text-xl font-bold">John Whyte, MD</p>
+              <p class="text-lg/5">WebMD Chief Medical Officer</p>
+            </div>
+          </div>
+          <div class="flex-1 border-t border-gray-300 ml-6"></div>
+        </div>
+
+        <!-- main content -->
+        <div class="mt-8 flex gap-8">
+          <!-- featured video -->
+          <div class="flex-[1.4] border-r border-gray-300 pr-12">
+            <a href="#" class="relative block overflow-hidden rounded-md">
+              <img
+                src="https://img.lb.wbmdstatic.com/vim/live/webmd/consumer_assets/videos/2022/50364432_Expert_Nash_020425_thumbnail_1800x1200.jpg?resize=750px:*&output-quality=70"
+                alt="Shortage of Primary Care Doctors"
+                class="w-full h-auto object-cover" />
+              <div class="playicon p-3.5">
+                <i class="fa-solid fa-play"></i>
+              </div>
+            </a>
+            <a href="#" class="block mt-4 text-5xl font-bold leading-snug hover:text-blue-100">
+              What’s Behind The Shortage Of Primary Care Doctors?
+            </a>
+          </div>
+
+          <!-- vertical divider -->
+          <!-- <div class="border-l border-gray-300"></div> -->
+
+          <!-- video list -->
+          <ul class="flex-1 flex flex-col gap-20 ml-8">
+            <!-- item 1 -->
+            <li class="flex items-start">
+              <a href="#" class="playcard">
+                <img
+                  src="https://img.lb.wbmdstatic.com/vim/live/webmd/consumer_assets/site_images/article_thumbnails/video/1800x1200-50636780-cancer-winn-vcu-video.jpg?resize=484px:*&output-quality=70"
+                  alt=""
+                  class="w-full h-full object-cover" />
+                <div class="playicon">
+                  <i class="fa-solid fa-play fa-2xs"></i>
+                </div>
+              </a>
+              <a href="#" class="playtext"> DNA And “ZNA” Are Driving Cancers In Black Americans </a>
+            </li>
+
+            <!-- item 2 -->
+            <li class="flex items-start">
+              <a href="#" class="playcard">
+                <img
+                  src="https://img.lb.wbmdstatic.com/vim/live/webmd/consumer_assets/site_images/article_thumbnails/features/_2024/08_2024/49228824_Cancer_SunilVerma_thumbnail_1800x1200.jpg?resize=484px:*&output-quality=70"
+                  alt=""
+                  class="w-full h-full object-cover" />
+                <div class="playicon">
+                  <i class="fa-solid fa-play fa-2xs"></i>
+                </div>
+              </a>
+              <a href="#" class="playtext"> Transforming Patient‑Centric Cancer Care </a>
+            </li>
+
+            <!-- item 3 -->
+            <li class="flex items-start">
+              <a href="#" class="playcard">
+                <img
+                  src="https://img.lb.wbmdstatic.com/vim/live/webmd/consumer_assets/site_images/article_thumbnails/features/JW49019426_jw-surgeon-general-teens-social-media_thumb_VIM.jpg?resize=484px:*&output-quality=70"
+                  alt=""
+                  class="w-full h-full object-cover" />
+                <div class="playicon">
+                  <i class="fa-solid fa-play fa-2xs"></i>
+                </div>
+              </a>
+              <a href="#" class="playtext"> Surgeon General’s Advisory On Teens And Social Media </a>
+            </li>
+
+            <!-- item 4 -->
+            <li class="flex items-start">
+              <a href="#" class="playcard">
+                <img
+                  src="https://img.lb.wbmdstatic.com/vim/live/webmd/consumer_assets/site_images/article_thumbnails/video/48552375_expert_stanton_and_schuele_epilepsy_video/1800x1200_48552375_expert_stanton_and_schuele_epilepsy_video.jpg?resize=484px:*&output-quality=70"
+                  alt=""
+                  class="w-full h-full object-cover" />
+                <div class="playicon">
+                  <i class="fa-solid fa-play fa-2xs"></i>
+                </div>
+              </a>
+              <a href="#" class="playtext"> Understanding Sudden Unexpected Death In Epilepsy </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SPECIAL SECTION -->
+    <section id="health_news" class="container px-6 py-8 mt-20">
+      <!-- header -->
+      <!-- <div class="flex justify-between items-center mb-6 border-b border-gray-200">
+        <h2 class="text-2xl font-bold uppercase text-main pb-1">Special Section</h2>
+      </div> -->
+
+      <h2 class="text-xl font-bold text-blue-900 border-b border-gray-200 pb-2 mb-8 uppercase">Special Section</h2>
     </section>
   </body>
 </html>
