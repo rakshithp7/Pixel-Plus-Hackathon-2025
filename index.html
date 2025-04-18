@@ -32,6 +32,10 @@
             colors: {
               main: '#00157c',
               secondary: '#3557ff',
+              btnhover: '#022dff',
+            },
+            boxShadow: {
+              card: '0 4px 8px rgba(0, 33, 104, .2);',
             },
           },
         },
@@ -41,10 +45,10 @@
     <style type="text/tailwindcss">
       @layer components {
         .container {
-          @apply max-w-[1240px] mx-auto;
+          @apply max-w-[1280px] mx-auto tracking-wide;
         }
         .nav-link {
-          @apply flex items-center space-x-1 px-2.5 py-1.5 rounded bg-transparent transition-colors duration-100 ease-in-out hover:bg-white hover:text-blue-900 text-[0.9rem] font-semibold;
+          @apply flex items-center space-x-1 px-2.5 py-1.5 rounded bg-transparent transition-colors duration-100 ease-in-out hover:bg-white hover:text-main text-[0.9rem] font-semibold;
         }
         .nav-submenu {
           @apply absolute left-0 top-[55px] bg-white text-black pb-4 pt-8 px-10 rounded shadow-lg
@@ -60,6 +64,19 @@
         }
         .nav-submenu a {
           @apply block whitespace-nowrap hover:text-blue-600 text-start;
+        }
+        /* SECTION HEADER STYLING */
+        .section-container {
+          @apply container px-6 py-8 mt-4;
+        }
+        .section-container__header {
+          @apply flex justify-between items-center mb-6 border-b border-gray-200;
+        }
+        .section-container__header h2 {
+          @apply text-xl font-semibold uppercase text-main pb-1 tracking-wider;
+        }
+        .section-container__viewall {
+          @apply border-b-[3px] border-secondary text-secondary font-normal hover:bg-blue-50 pb-1 mb-[-4px];
         }
         /* TOP STORIES */
         .secondary-story {
@@ -83,7 +100,7 @@
         }
         /* CONDITIONS */
         .topic-grid {
-          @apply bg-blue-50 rounded-sm;
+          @apply bg-[#edf0ff] rounded-sm;
         }
         .topic-grid ul {
           @apply grid grid-cols-2 md:grid-cols-4;
@@ -92,8 +109,7 @@
           @apply border-none;
         }
         .topic-link {
-          @apply text-gray-800 flex items-center space-x-2 font-normal text-[1.1rem] hover:text-blue-600
-           p-5 mx-4 border-b border-gray-200;
+          @apply text-gray-800 flex items-center space-x-2 font-normal text-[1.1rem] hover:text-blue-600 py-5 pr-5 pl-2 mx-4 border-b border-gray-300;
         }
         .topic-link i {
           @apply text-blue-600;
@@ -111,10 +127,105 @@
         .playtext {
           @apply ml-4 text-2xl font-semibold hover:text-blue-100 mt-4;
         }
+        /* SPECIAL SECTION */
+        .special-card {
+          @apply bg-white rounded-sm hover:cursor-pointer;
+        }
+        .special-card__imgdiv {
+          @apply overflow-hidden flex-shrink-0;
+        }
+        .special-card__img {
+          @apply w-[400px] h-[267px] object-cover transform transition-transform duration-500 ease-in-out group-hover:scale-[1.18];
+        }
+        .special-card__body {
+          @apply p-4;
+        }
+        .special-card__label {
+          @apply text-sm font-normal text-gray-500 mb-1;
+        }
+        .special-card__title {
+          @apply text-xl font-semibold text-gray-900 mb-2 transition-colors duration-300 group-hover:text-blue-600;
+        }
+        .special-card__desc {
+          @apply text-gray-500 text-lg font-normal;
+        }
+        /* TRENDING TOPICS */
+        .topic-pill {
+          @apply inline-block bg-white text-[#3557ff] px-4 py-2 rounded-full hover:bg-blue-50 font-light text-lg;
+        }
+        /* NEWSLETTER */
+        .newsletter-checkbox {
+          @apply block w-5 h-5 relative appearance-none cursor-pointer;
+        }
+        .newsletter-checkbox::before {
+          content: '';
+          @apply absolute inset-0 border-2 bg-main border-white rounded pointer-events-none;
+        }
+        .newsletter-checkbox:checked::after {
+          content: '✔';
+          @apply absolute inset-0 flex items-center justify-center text-white pointer-events-none text-sm;
+        }
+        .input-email {
+          @apply flex-1 px-4 py-3 rounded-l-md text-gray-800;
+        }
+        .btn-subscribe {
+          @apply bg-gray-400 text-gray-500 font-semibold px-6 py-3 rounded-r-md hover:bg-gray-500 hover:text-white transition text-xl;
+        }
+        .btn-outline-white {
+          @apply border border-white text-white px-5 py-2.5 rounded hover:bg-blue-50 hover:text-[#00157c];
+        }
+        /* CONTRIBUTORS */
+        .contributor-card {
+          @apply bg-[#f4f6ff] rounded-lg flex flex-col;
+        }
+        .contributor-card__imgContainer {
+          @apply overflow-hidden flex-shrink-0;
+        }
+        .contributor-card__img {
+          @apply w-full h-[295px] object-cover transform transition-transform duration-500 ease-in-out group-hover:scale-[1.18];
+        }
+        .contributor-card__categoryPill {
+          @apply absolute top-4 left-4 bg-white text-xs font-medium px-3 py-1 rounded-sm;
+        }
+        .contributor-card__content {
+          @apply bg-white p-4 flex-1 flex flex-col;
+        }
+        .contributor-card__content h3 {
+          @apply text-lg font-semibold text-gray-800 hover:text-secondary text-center hover:cursor-pointer;
+        }
+        .contributor-card__content p {
+          @apply mt-1 text-sm text-gray-500 text-center;
+        }
+        .contributor-card__content hr {
+          @apply my-4 border-gray-200;
+        }
+        .contributor-card__content a {
+          @apply mt-auto text-lg font-medium text-gray-900 inline-flex group-hover:text-secondary;
+        }
+        .contributor-card__content span {
+          @apply ml-1 text-[#3557ff] self-end;
+        }
+        /* EDITORIAL PROCESS */
+        .step-num {
+          @apply text-3xl lg:text-4xl font-bold text-[#7384d8] mr-6 flex-none;
+        }
+        /* DOCTORS */
+        .doctor-card {
+          @apply bg-white rounded-lg border border-gray-300 p-6 flex flex-col justify-between text-center transform transition-transform duration-500 ease-in-out font-normal hover:-translate-y-1.5 hover:shadow-lg hover:shadow-card w-[350px];
+        }
+        .doctor-card p {
+          @apply text-xs;
+        }
+        .avatar {
+          @apply w-24 h-24 mb-4;
+        }
+        .btn-primary {
+          @apply inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-full p-3;
+        }
       }
     </style>
   </head>
-  <body>
+  <body class="bg-[#f8f8f8] font-normal">
     <!-- NAVBAR -->
     <nav class="font-sans bg-main text-white">
       <div class="container flex items-center h-[75px] place-content-center">
@@ -280,9 +391,11 @@
     </nav>
 
     <!-- TODAY'S TOP STORIES -->
-    <section id="top-stories" class="container px-6 py-8">
+    <section id="top-stories" class="section-container mt-0">
       <!-- Title -->
-      <h2 class="text-xl font-bold text-blue-900 border-b border-gray-200 pb-2 mb-8 uppercase">Today's Top Stories</h2>
+      <div class="section-container__header">
+        <h2 class="">Today's Top Stories</h2>
+      </div>
 
       <!-- Featured story -->
       <div class="flex gap-6 group hover:cursor-pointer">
@@ -294,11 +407,11 @@
         </div>
 
         <!-- Text -->
-        <div class="flex flex-col justify-center">
-          <h3 class="text-4xl font-bold mb-3 transition-colors duration-300 group-hover:text-blue-600">
+        <div class="flex flex-col justify-center ml-3">
+          <h3 class="text-[2.4rem] font-bold mb-4 transition-colors duration-300 group-hover:text-blue-600">
             Types Of Headaches And Relief Options
           </h3>
-          <p class="text-gray-500 text-[1.3rem] leading-relaxed font-normal">
+          <p class="text-gray-500 text-[1.3rem] leading-relaxed">
             A headache can be unbearable, but treatments like medications, home remedies, and lifestyle changes could
             provide relief. Learn the best solutions for managing your headaches.
           </p>
@@ -349,15 +462,10 @@
     </section>
 
     <!-- LIVING HEALTHY -->
-    <section id="living-healthy" class="container px-6 py-8 mt-[60px]">
-      <!-- header -->
-      <div class="flex justify-between items-center mb-6 border-b border-gray-200">
-        <h2 class="text-2xl font-bold uppercase text-main pb-1">Living Healthy</h2>
-        <a
-          href="https://www.webmd.com/living-healthy"
-          class="border-b-2 border-secondary text-secondary hover:bg-blue-50 pb-1 mb-[-8px]">
-          View All
-        </a>
+    <section id="living-healthy" class="section-container mt-[60px]">
+      <div class="section-container__header">
+        <h2>Living Healthy</h2>
+        <a href="https://www.webmd.com/living-healthy" class="section-container__viewall"> View All </a>
       </div>
 
       <!-- cards -->
@@ -429,15 +537,10 @@
     </section>
 
     <!-- CONDITIONS -->
-    <section id="conditions" class="container px-6 py-8">
-      <!-- header -->
-      <div class="flex justify-between items-center mb-6 border-b border-gray-200">
-        <h2 class="text-2xl font-bold uppercase text-main pb-1">Conditions</h2>
-        <a
-          href="https://www.webmd.com/a-to-z-guides/health-topics"
-          class="border-b-2 border-secondary text-secondary hover:bg-blue-50 pb-1 mb-[-8px]">
-          View All
-        </a>
+    <section id="conditions" class="section-container">
+      <div class="section-container__header">
+        <h2>Conditions</h2>
+        <a href="https://www.webmd.com/a-to-z-guides/health-topics" class="section-container__viewall"> View All </a>
       </div>
 
       <div class="topic-grid">
@@ -498,15 +601,10 @@
     </section>
 
     <!-- HEALTH NEWS -->
-    <section id="health_news" class="container px-6 py-8">
-      <!-- header -->
-      <div class="flex justify-between items-center mb-6 border-b border-gray-200">
-        <h2 class="text-2xl font-bold uppercase text-main pb-1">Health News</h2>
-        <a
-          href="https://www.webmd.com/news/default.htm"
-          class="border-b-2 border-secondary text-secondary hover:bg-blue-50 pb-1 mb-[-8px]">
-          View All
-        </a>
+    <section id="health_news" class="section-container">
+      <div class="section-container__header">
+        <h2>Health News</h2>
+        <a href="https://www.webmd.com/news/default.htm" class="section-container__viewall"> View All </a>
       </div>
 
       <div class="flex gap-6 group hover:cursor-pointer">
@@ -522,7 +620,7 @@
           <h3 class="text-4xl font-bold mb-3 transition-colors duration-300 group-hover:text-blue-600">
             Parkinson's Disease May Soon Outpace Dementia
           </h3>
-          <p class="text-gray-500 text-[1.3rem] font-normal font-normal">
+          <p class="text-gray-500 text-[1.3rem]">
             According to a study published last month, Parkinson's disease cases are expected to rise by 30% in North
             America and double worldwide by 2050.
           </p>
@@ -533,19 +631,19 @@
       <hr class="my-8 border-none" />
 
       <!-- Secondary stories -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-20 text-2xl text-pretty">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-20 text-2xl text-pretty mb-6">
         <!-- Story 1 -->
-        <a href="#" class="border-r border-gray-200 w-[400px]">
+        <a href="#" class="border-r border-gray-200 w-[400px] hover:text-secondary">
           <h4>How to Know If a Scary Health Headline Is Legit</h4>
         </a>
 
         <!-- Story 2 -->
-        <a href="#" class="border-r border-gray-200 w-[400px]">
+        <a href="#" class="border-r border-gray-200 w-[400px] hover:text-secondary">
           <h4>This Common Vaginal Issue Is Really an STD</h4>
         </a>
 
         <!-- Story 3 -->
-        <a href="#" class="w-[400px]">
+        <a href="#" class="w-[400px] hover:text-secondary">
           <h4>FDA Issues Warning About Counterfeit Ozempic</h4>
         </a>
       </div>
@@ -554,14 +652,13 @@
     <!-- EXPERT INSIGHTS -->
     <section id="expert_insights" class="bg-[#000625] text-white p-8">
       <div class="container pb-12 pt-6">
-        <!-- header -->
         <div class="flex items-center">
           <div class="flex items-center">
             <img
               src="https://img.lb.wbmdstatic.com/vim/live/webmd/consumer_assets/site_images/home_page/homepage-john-whyte-image.png"
               alt="John Whyte, MD"
               class="w-16 h-16 rounded-full object-cover bg-[#e1855b]" />
-            <div class="ml-4 w-[200px] font-normal">
+            <div class="ml-4 w-[200px]">
               <p class="text-lg">Expert Insights From</p>
               <p class="text-xl font-bold">John Whyte, MD</p>
               <p class="text-lg/5">WebMD Chief Medical Officer</p>
@@ -583,7 +680,7 @@
                 <i class="fa-solid fa-play"></i>
               </div>
             </a>
-            <a href="#" class="block mt-4 text-5xl font-bold leading-snug hover:text-blue-100">
+            <a href="#" class="block mt-4 text-[2.5rem] font-semibold leading-[1.3] hover:text-blue-100">
               What’s Behind The Shortage Of Primary Care Doctors?
             </a>
           </div>
@@ -654,13 +751,856 @@
     </section>
 
     <!-- SPECIAL SECTION -->
-    <section id="health_news" class="container px-6 py-8 mt-20">
-      <!-- header -->
-      <!-- <div class="flex justify-between items-center mb-6 border-b border-gray-200">
-        <h2 class="text-2xl font-bold uppercase text-main pb-1">Special Section</h2>
-      </div> -->
+    <section id="special_section" class="section-container mt-20">
+      <div class="section-container__header">
+        <h2>Special Section</h2>
+      </div>
 
-      <h2 class="text-xl font-bold text-blue-900 border-b border-gray-200 pb-2 mb-8 uppercase">Special Section</h2>
+      <!-- 3‑column grid -->
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <!-- Card 1 -->
+        <article class="special-card group">
+          <div class="special-card__imgdiv">
+            <img
+              src="https://img.lb.wbmdstatic.com/vim/live/webmd/consumer_assets/site_images/article_thumbnails/other/man_wearing_cpap_sleeping_beside_wife_in_bed_other/1800x1200_man_wearing_cpap_sleeping_beside_wife_in_bed_other.jpg?resize=400px:*&output-quality=70"
+              alt="Spotlight on Sleep Apnea"
+              class="special-card__img" />
+          </div>
+          <div class="special-card__body">
+            <p class="special-card__label">Spotlight on Sleep Apnea</p>
+            <h3 class="special-card__title">Treating Your Sleep Apnea</h3>
+            <p class="special-card__desc">
+              Sleep apnea could strain your health and wallet, but the right diagnosis and treatment can help. Learn the
+              signs, explore your options, and sleep easier.
+            </p>
+          </div>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="special-card group">
+          <div class="special-card__imgdiv">
+            <img
+              src="https://img.lb.wbmdstatic.com/vim/live/webmd/consumer_assets/site_images/article_thumbnails/reference_guide/weight-gain-while-treating-hiv-spanish-ref-guide/1800x1200-weight-gain-while-treating-hiv-spanish-ref-guide.jpg?resize=400px:*&output-quality=70"
+              alt="Weight Loss and Obesity"
+              class="special-card__img" />
+          </div>
+          <div class="special-card__body">
+            <p class="special-card__label">Content on Weight Loss and Obesity</p>
+            <h3 class="special-card__title">A New Way To Look At Obesity</h3>
+            <p class="special-card__desc">
+              Uncover a fresh take on obesity management, from modest weight loss benefits to the latest treatments and
+              tips for reaching your goals.
+            </p>
+          </div>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="special-card group">
+          <div class="special-card__imgdiv">
+            <img
+              src="https://img.lb.wbmdstatic.com/vim/live/webmd/consumer_assets/site_images/articles/health_tools/managing_challenges_of_mg_slideshow/1800ss_getty_rf_doctor_patient_consultation.jpg?resize=400px:*&output-quality=70"
+              alt="Spotlight on Asthma"
+              class="special-card__img" />
+          </div>
+          <div class="special-card__body">
+            <p class="special-card__label">Spotlight on Asthma</p>
+            <h3 class="special-card__title">Breaking Barriers In Asthma Care</h3>
+            <p class="special-card__desc">
+              Asthma is more likely to affect certain racial and ethnic groups. Learn more about the reasons for these
+              disparities and some potential solutions.
+            </p>
+          </div>
+        </article>
+      </div>
     </section>
+
+    <!-- TRENDING TOPICS -->
+    <section id="trending_topics" class="section-container">
+      <div class="section-container__header">
+        <h2>Trending Topics</h2>
+      </div>
+
+      <div class="flex flex-wrap gap-4 gap-y-8 mt-8">
+        <a href="#" class="topic-pill">Allergies</a>
+        <a href="#" class="topic-pill">Bird Flu</a>
+        <a href="#" class="topic-pill">Chronic Pain</a>
+        <a href="#" class="topic-pill">Cough</a>
+        <a href="#" class="topic-pill">Digestive Problems</a>
+        <a href="#" class="topic-pill">Emotional Wellness</a>
+        <a href="#" class="topic-pill">Fitness And Exercise</a>
+        <a href="#" class="topic-pill">Measles</a>
+        <a href="#" class="topic-pill">Skin Problems And Treatments</a>
+        <a href="#" class="topic-pill">Vitamins And Supplements</a>
+      </div>
+    </section>
+
+    <!-- FEATURED STORIES -->
+    <section id="featured_stories" class="section-container">
+      <div class="section-container__header">
+        <h2>Featured Stories</h2>
+      </div>
+
+      <!-- 3‑column grid -->
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <!-- Card 1 -->
+        <article class="special-card group">
+          <div class="special-card__imgdiv">
+            <img
+              src="https://img.lb.wbmdstatic.com/vim/live/webmd/consumer_assets/site_images/article_thumbnails/other/doctor_inspecting_mature_womans_knee_other/1800x1200_doctor_inspecting_mature_womans_knee_other.jpg?resize=400px:*&output-quality=70"
+              class="special-card__img" />
+          </div>
+          <div class="special-card__body">
+            <h3 class="special-card__title">Why Cartilage Restoration Might Delay Your Knee Replacement</h3>
+            <p class="special-card__desc">
+              Knee replacement relieves severe pain but doesn’t last forever. Cartilage restoration could be an option
+              -- here's what to know.
+            </p>
+          </div>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="special-card group">
+          <div class="special-card__imgdiv">
+            <img
+              src="https://img.lb.wbmdstatic.com/vim/live/webmd/consumer_assets/site_images/articles/health_tools/questions_to_ask_doctor_about_egfr_positive_nsclc_slideshow/1800ss_medical_images_rf_researcher_trialing_medical_drug_ampule.jpg?resize=400px:*&output-quality=70"
+              class="special-card__img" />
+          </div>
+          <div class="special-card__body">
+            <h3 class="special-card__title">Decoding Your DNA: What Genetic Testing Reveals</h3>
+            <p class="special-card__desc">
+              In this podcast, Dr. Huma Q. Rana breaks down genetic testing, its benefits, and what the results could
+              mean for your health and your family.
+            </p>
+          </div>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="special-card group">
+          <div class="special-card__imgdiv">
+            <img
+              src="https://img.lb.wbmdstatic.com/vim/live/consumer_assets/site_images/articles/health_tools/best_and_worst_foods_for_gout_slideshow/1800ss_getty_rf_holding_clementine_slice.jpg?resize=400px:*&output-quality=70"
+              class="special-card__img" />
+          </div>
+          <div class="special-card__body">
+            <h3 class="special-card__title">How The Portfolio Diet Reduces Cholesterol Levels</h3>
+            <p class="special-card__desc">
+              The Portfolio Diet focuses on lowering cholesterol, not weight loss. Discover the cholesterol-fighting
+              foods to include in your diet.
+            </p>
+          </div>
+        </article>
+      </div>
+
+      <!-- NEWSLETTER -->
+      <div class="bg-main mt-12 text-white rounded py-12 px-16 flex flex-row items-start items-center gap-8">
+        <!-- LEFT COLUMN -->
+        <div class="flex-1">
+          <h2 class="text-4xl font-semibold">Free WebMD Newsletters</h2>
+          <p class="mt-2 text-lg">Doctor-approved health and wellness information delivered to your inbox.</p>
+
+          <!-- checkboxes -->
+          <div class="mt-6 flex flex-wrap gap-x-8 gap-y-4 text-[1.1rem]">
+            <label class="flex items-center space-x-2">
+              <input type="checkbox" class="newsletter-checkbox" />
+              <span>Daily Updates</span>
+            </label>
+            <label class="flex items-center space-x-2">
+              <input type="checkbox" class="newsletter-checkbox" />
+              <span>Women's Health</span>
+            </label>
+            <label class="flex items-center space-x-2">
+              <input type="checkbox" class="newsletter-checkbox" />
+              <span>Good Health</span>
+            </label>
+          </div>
+
+          <!-- email + subscribe -->
+          <form action="#" class="mt-6 flex max-w-lg">
+            <input type="email" placeholder="Enter your email address" class="input-email" />
+            <button type="submit" class="btn-subscribe">Subscribe</button>
+          </form>
+
+          <!-- small print -->
+          <p class="mt-4 text-xs text-gray-300 leading-relaxed max-w-md">
+            By clicking Subscribe, I agree to the WebMD
+            <a href="#" class="underline">Terms &amp; Conditions</a> and
+            <a href="#" class="underline">Privacy Policy</a> and understand that I may opt out of WebMD subscriptions at
+            any time. This site is protected by reCAPTCHA and the Google
+            <a href="#" class="underline">Privacy Policy</a> and
+            <a href="#" class="underline">Terms of Service</a> apply.
+          </p>
+
+          <!-- outline button -->
+          <a href="#" class="btn-outline-white mt-6 inline-block">See All WebMD Newsletters</a>
+        </div>
+
+        <!-- RIGHT COLUMN (illustration) -->
+        <div>
+          <img
+            src="https://img.lb.wbmdstatic.com/vim/live/webmd/consumer_assets/site_images/home_page/hp-nl-envelop.png?resize=484px:*&output-quality=70"
+            alt="Newsletter Illustration"
+            class="w-[370px] h-auto object-cover rounded-lg shadow-lg" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Patient and Expert Contributors -->
+    <section id="contributors" class="section-container">
+      <div class="section-container__header">
+        <h2>Patient and Expert Contributors</h2>
+        <a href="https://blogs.webmd.com/default.htm" class="section-container__viewall"> View All </a>
+      </div>
+
+      <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- card 1 -->
+        <div class="contributor-card group">
+          <div class="relative contributor-card__imgContainer">
+            <span class="z-10 contributor-card__categoryPill"> Myasthenia Gravis </span>
+            <img
+              src="https://img.lb.wbmdstatic.com/vim/live/webmd/consumer_assets/site_images/articles/biographies/600x600_misha_page.jpg?resize=484px:*&output-quality=70"
+              alt="Misha Grayson Coleman"
+              class="contributor-card__img" />
+          </div>
+          <div class="contributor-card__content">
+            <h3>Misha Grayson Coleman</h3>
+            <p>Diagnosed since 2021</p>
+            <hr />
+            <a href="#"> How Hormonal Changes Affect MG </a>
+            <span>→</span>
+          </div>
+        </div>
+
+        <!-- card 2 -->
+        <div class="contributor-card group">
+          <div class="relative contributor-card__imgContainer">
+            <span class="z-10 contributor-card__categoryPill"> Multiple Sclerosis </span>
+            <img
+              src="https://img.lb.wbmdstatic.com/vim/live/webmd/consumer_assets/site_images/articles/biographies/600x600_maytee_ramos.jpg?resize=484px:*&output-quality=70"
+              alt="Mayteé Ramos"
+              class="contributor-card__img" />
+          </div>
+          <div class="contributor-card__content">
+            <h3>Mayteé Ramos</h3>
+            <p>Diagnosed since 2015</p>
+            <hr />
+            <a href="#"> A New Life Without My Brace </a>
+            <span>→</span>
+          </div>
+        </div>
+
+        <!-- card 3 -->
+        <div class="contributor-card group">
+          <div class="relative contributor-card__imgContainer">
+            <span class="z-10 contributor-card__categoryPill"> Digestive Health </span>
+            <img
+              src="https://img.lb.wbmdstatic.com/vim/live/webmd/consumer_assets/site_images/articles/biographies/600x600_elizabeth_ward.jpg?resize=484px:*&output-quality=70"
+              alt="Elizabeth Ward, RD, MS"
+              class="contributor-card__img" />
+          </div>
+          <div class="contributor-card__content">
+            <h3>Elizabeth Ward, RD, MS</h3>
+            <p>Registered dietitian nutritionist</p>
+            <hr />
+            <a href="#"> How to Talk to Your Doctor About Your Digestion </a>
+            <span>→</span>
+          </div>
+        </div>
+
+        <!-- card 4 -->
+        <div class="contributor-card group">
+          <div class="relative contributor-card__imgContainer">
+            <span class="z-10 contributor-card__categoryPill"> Skin Care </span>
+            <img
+              src="https://img.lb.wbmdstatic.com/vim/live/webmd/consumer_assets/site_images/articles/biographies/600x600_mary_alice_mina.jpg?resize=484px:*&output-quality=70"
+              alt="Mary Alice Mina, MD"
+              class="contributor-card__img" />
+          </div>
+          <div class="contributor-card__content">
+            <h3>Mary Alice Mina, MD</h3>
+            <p>Double board‑certified dermatologist</p>
+            <hr />
+            <a href="#"> The Truth About PRP: Myths, Facts, and What You Need to Know </a>
+            <span>→</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tools, Trackers & Calculators -->
+    <section id="tools_trackers" class="section-container">
+      <div class="section-container__header">
+        <h2>Tools, Trackers & Calculators</h2>
+      </div>
+    </section>
+
+    <!-- Health A - Z -->
+    <section id="health" class="section-container">
+      <div class="section-container__header">
+        <h2>Health A - Z</h2>
+        <a href="https://www.webmd.com/a-to-z-guides/common-topics" class="section-container__viewall"> View All </a>
+      </div>
+
+      <div class="topic-grid">
+        <ul class="topic-list">
+          <li>
+            <a href="https://www.webmd.com/add-adhd/childhood-adhd/default.htm" class="topic-link">
+              <i class="fa-solid fa-arrow-right"></i>
+              <span>ADD/ADHD – Childhood</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.webmd.com/add-adhd/default.htm" class="topic-link">
+              <i class="fa-solid fa-arrow-right"></i>
+              <span>ADHD</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.webmd.com/allergies/default.htm" class="topic-link">
+              <i class="fa-solid fa-arrow-right"></i>
+              <span>Allergies</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.webmd.com/alzheimers/default.htm" class="topic-link">
+              <i class="fa-solid fa-arrow-right"></i>
+              <span>Alzheimer’s</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.webmd.com/ankylosing-spondylitis/default.htm" class="topic-link">
+              <i class="fa-solid fa-arrow-right"></i>
+              <span>Ankylosing Spondylitis</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.webmd.com/anxiety-panic/default.htm" class="topic-link">
+              <i class="fa-solid fa-arrow-right"></i>
+              <span>Anxiety Disorders</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.webmd.com/arthritis/default.htm" class="topic-link">
+              <i class="fa-solid fa-arrow-right"></i>
+              <span>Arthritis</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.webmd.com/asthma/default.htm" class="topic-link">
+              <i class="fa-solid fa-arrow-right"></i>
+              <span>Asthma</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.webmd.com/back-pain/default.htm" class="topic-link">
+              <i class="fa-solid fa-arrow-right"></i>
+              <span>Back Pain</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.webmd.com/cancer/default.htm" class="topic-link">
+              <i class="fa-solid fa-arrow-right"></i>
+              <span>Cancer</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.webmd.com/children/vaccines/default.htm" class="topic-link">
+              <i class="fa-solid fa-arrow-right"></i>
+              <span>Children’s Vaccines</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.webmd.com/cholesterol-management/default.htm" class="topic-link">
+              <i class="fa-solid fa-arrow-right"></i>
+              <span>Cholesterol</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.webmd.com/cold-and-flu/default.htm" class="topic-link">
+              <i class="fa-solid fa-arrow-right"></i>
+              <span>Cold, Flu, &amp; Cough</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.webmd.com/lung/copd/default.htm" class="topic-link">
+              <i class="fa-solid fa-arrow-right"></i>
+              <span>COPD</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.webmd.com/coronavirus" class="topic-link">
+              <i class="fa-solid fa-arrow-right"></i>
+              <span>Coronavirus</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.webmd.com/depression/default.htm" class="topic-link">
+              <i class="fa-solid fa-arrow-right"></i>
+              <span>Depression</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.webmd.com/diabetes/type-2-diabetes" class="topic-link">
+              <i class="fa-solid fa-arrow-right"></i>
+              <span>Diabetes</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.webmd.com/digestive-disorders/default.htm" class="topic-link">
+              <i class="fa-solid fa-arrow-right"></i>
+              <span>Digestive Disorders</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.webmd.com/eye-health/default.htm" class="topic-link">
+              <i class="fa-solid fa-arrow-right"></i>
+              <span>Eye Health</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.webmd.com/balance/default.htm" class="topic-link">
+              <i class="fa-solid fa-arrow-right"></i>
+              <span>Health &amp; Balance</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.webmd.com/heart/default.htm" class="topic-link">
+              <i class="fa-solid fa-arrow-right"></i>
+              <span>Heart Health</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.webmd.com/heartburn-gerd/default.htm" class="topic-link">
+              <i class="fa-solid fa-arrow-right"></i>
+              <span>Heartburn/GERD</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.webmd.com/hypertension-high-blood-pressure/default.htm" class="topic-link">
+              <i class="fa-solid fa-arrow-right"></i>
+              <span>Hypertension</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.webmd.com/lung-cancer/default.htm" class="topic-link">
+              <i class="fa-solid fa-arrow-right"></i>
+              <span>Lung Cancer</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.webmd.com/mental-health/default.htm" class="topic-link">
+              <i class="fa-solid fa-arrow-right"></i>
+              <span>Mental Health</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.webmd.com/migraines-headaches/default.htm" class="topic-link">
+              <i class="fa-solid fa-arrow-right"></i>
+              <span>Migraines</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.webmd.com/cancer/multiple-myeloma/default.htm" class="topic-link">
+              <i class="fa-solid fa-arrow-right"></i>
+              <span>Multiple Myeloma</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.webmd.com/multiple-sclerosis/default.htm" class="topic-link">
+              <i class="fa-solid fa-arrow-right"></i>
+              <span>Multiple Sclerosis</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.webmd.com/oral-health/default.htm" class="topic-link">
+              <i class="fa-solid fa-arrow-right"></i>
+              <span>Oral Care</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.webmd.com/orthopedics/default.htm" class="topic-link">
+              <i class="fa-solid fa-arrow-right"></i>
+              <span>Orthopedics</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.webmd.com/osteoporosis/default.htm" class="topic-link">
+              <i class="fa-solid fa-arrow-right"></i>
+              <span>Osteoporosis</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.webmd.com/ovarian-cancer/default.htm" class="topic-link">
+              <i class="fa-solid fa-arrow-right"></i>
+              <span>Ovarian Cancer</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.webmd.com/prostate-cancer/default.htm" class="topic-link">
+              <i class="fa-solid fa-arrow-right"></i>
+              <span>Prostate Cancer</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.webmd.com/skin-problems-and-treatments/psoriasis/default.htm" class="topic-link">
+              <i class="fa-solid fa-arrow-right"></i>
+              <span>Psoriasis</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.webmd.com/rheumatoid-arthritis/default.htm" class="topic-link">
+              <i class="fa-solid fa-arrow-right"></i>
+              <span>Rheumatoid Arthritis</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.webmd.com/schizophrenia/default.htm" class="topic-link">
+              <i class="fa-solid fa-arrow-right"></i>
+              <span>Schizophrenia</span>
+            </a>
+          </li>
+          <li class="noborder">
+            <a href="https://www.webmd.com/sexual-conditions/default.htm" class="topic-link">
+              <i class="fa-solid fa-arrow-right"></i>
+              <span>Sexual Conditions</span>
+            </a>
+          </li>
+          <li class="noborder">
+            <a href="https://www.webmd.com/skin-problems-and-treatments/default.htm" class="topic-link">
+              <i class="fa-solid fa-arrow-right"></i>
+              <span>Skin Problems</span>
+            </a>
+          </li>
+          <li class="noborder">
+            <a href="https://www.webmd.com/sleep-disorders/default.htm" class="topic-link">
+              <i class="fa-solid fa-arrow-right"></i>
+              <span>Sleep Disorders</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- EDITORIAL PROCESS -->
+    <section id="editoral-process" class="py-14 bg-white mt-12">
+      <div class="container mx-auto px-4 flex flex-row gap-8">
+        <!-- Left image -->
+        <div class="w-1/2">
+          <img
+            src="https://img.lb.wbmdstatic.com/vim/live/webmd/consumer_assets/site_images/home_page/webmd-mission.jpg"
+            alt="Team collaborating"
+            class="w-[605px] h-[678px] rounded-sm object-cover" />
+        </div>
+
+        <!-- Right content -->
+        <div class="w-1/2 space-y-6 flex flex-col justify-between">
+          <!-- Heading -->
+          <h2 class="text-[2.5rem] font-bold text-gray-900">Our Content Is Different Because We Set the Bar Higher</h2>
+
+          <!-- Introduction paragraphs -->
+          <div class="space-y-4 text-gray-700 text-xl">
+            <p>
+              As a leader in digital health publishing for more than 25 years, WebMD strives to maintain the most
+              comprehensive and reliable source of health and medical information on the internet.
+            </p>
+            <p>
+              We recognize the responsibility that comes along with being the most well‑known and trusted health
+              information platform — and we take that responsibility seriously by:
+            </p>
+          </div>
+
+          <!-- Numbered steps -->
+          <ul class="space-y-6 text-xl">
+            <li class="flex">
+              <span class="step-num">01</span>
+              <p class="flex-1 text-gray-700">
+                Charging our content creators to practice
+                <strong>journalistic principles</strong> of excellence and provide objective, accurate, and balanced
+                reporting
+              </p>
+            </li>
+            <li class="flex">
+              <span class="step-num">02</span>
+              <p class="flex-1 text-gray-700">
+                Maintaining <strong>editorial independence</strong> and transparency into how we protect the integrity
+                of our content
+              </p>
+            </li>
+            <li class="flex">
+              <span class="step-num">03</span>
+              <p class="flex-1 text-gray-700">
+                Regularly reviewing and updating our content by working with our network of
+                <strong>more than 100 doctors and health experts</strong>
+              </p>
+            </li>
+          </ul>
+
+          <!-- Learn more link -->
+          <a href="#" class="inline-flex items-center text-blue-600 text-xl">
+            <i class="fa-solid fa-arrow-right mr-1"></i>
+            <span class="ml-2 hover:underline">Learn more about our Editorial Process</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- DOCTORS -->
+    <section class="bg-gray-50 py-12">
+      <div class="container mx-auto px-4 space-y-8">
+        <!-- header -->
+        <div class="flex items-center justify-between">
+          <h2 class="text-3xl font-semibold text-blue-900">Top doctors in Lakeland, FL</h2>
+          <span class="text-sm text-gray-600">Sponsored Results</span>
+        </div>
+
+        <!-- cards grid -->
+        <div class="flex space-x-4 justify-center">
+          <!-- Card 1 -->
+          <div class="doctor-card">
+            <div class="flex flex-col items-center">
+              <div class="avatar">
+                <img
+                  src="https://img.lb.wbmdstatic.com/lhd/provider_prod/2728162_providerprofileimage_6e507ac1-3a3b-482a-95cc-8cb5e3324543.jpg"
+                  alt="Abby Guirguis"
+                  class="rounded-full w-full h-full object-cover border border-gray-200" />
+              </div>
+              <h3 class="text-xl font-semibold text-gray-900">Abby Guirguis, APRN‑CNP</h3>
+              <p class="text-sm text-gray-600">
+                Nurse Practitioner, Family Medicine, Emergency Medicine, Adolescent Medicine, Internal Medicine,
+                Regenerative Medicine, Psychiatry, Dermatology
+              </p>
+              <div class="flex items-center space-x-2 text-sm mt-2">
+                <span class="font-medium text-gray-800">3.7</span>
+                <div class="flex text-yellow-400 space-x-0.5">
+                  <!-- replace with <svg> stars or Font‑Awesome -->
+                  ★★★★☆
+                </div>
+                <a href="#" class="text-blue-500">3 Ratings</a>
+                <svg
+                  data-v-01fcd4ce=""
+                  width="14"
+                  height="12"
+                  viewBox="0 0 14 12"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M13.6116 2.26989C13.4826 2.10216 13.3139 1.96504 13.119 1.86936C12.9241 1.77368 12.7083 1.72207 12.4886 1.71861H9.25237C9.15559 1.22624 8.87551 0.782636 8.46259 0.467703C8.04967 0.152769 7.53104 -0.0127922 7.00013 0.00084055C6.46923 -0.0127504 5.95063 0.152826 5.53772 0.467751C5.12481 0.782676 4.84472 1.22626 4.7479 1.71861H1.51169C1.29194 1.72206 1.07605 1.77366 0.881095 1.86934C0.686143 1.96502 0.517472 2.10215 0.388421 2.26989C0.127843 2.60385 -0.00854654 3.00956 0.000415012 3.42407V10.2951C-0.00841496 10.7095 0.127965 11.1151 0.388421 11.4491C0.517487 11.6168 0.686167 11.7538 0.881121 11.8495C1.07608 11.9451 1.29196 11.9967 1.51169 12.0001H12.4886C12.7082 11.9966 12.924 11.9451 13.1188 11.8495C13.3137 11.754 13.4824 11.6171 13.6116 11.4496C13.8721 11.1155 14.0085 10.7097 13.9996 10.2951V3.42407C14.0087 3.00954 13.8723 2.60378 13.6116 2.26989ZM7.00014 1.12133C7.21545 1.11113 7.42897 1.16276 7.61248 1.26941C7.796 1.37605 7.94088 1.53269 8.02798 1.71861H5.97233C6.05939 1.53267 6.20426 1.37602 6.38778 1.26937C6.5713 1.16272 6.78483 1.1111 7.00013 1.12132L7.00014 1.12133ZM12.8065 3.42407V5.00623L7.00014 7.66366L1.19377 5.00622V3.42407C1.18833 3.25409 1.23921 3.08674 1.33934 2.9453C1.42508 2.83911 1.48804 2.83911 1.51169 2.83911H12.4886C12.5125 2.83911 12.5758 2.83911 12.6612 2.94503C12.7613 3.0866 12.812 3.25404 12.8065 3.42407L12.8065 3.42407ZM12.8065 6.25563V10.2952C12.812 10.4649 12.7614 10.632 12.6618 10.7734C12.5752 10.8799 12.5125 10.8799 12.4886 10.8799H1.51169C1.48804 10.8799 1.4248 10.8799 1.33934 10.774C1.23932 10.6325 1.18845 10.4652 1.19377 10.2952V6.25566L6.73862 8.79673C6.82017 8.83371 6.9095 8.85291 6.99999 8.85291C7.09048 8.85291 7.17982 8.83371 7.26137 8.79673L12.8065 6.25563Z"
+                    fill="#7384D8"></path>
+                </svg>
+                <span class="text-gray-600">14 Years Exp</span>
+              </div>
+            </div>
+            <div class="space-y-2 flex flex-col">
+              <a href="tel:9412704169" class="btn-primary mt-4 w-full">
+                <i class="fa-solid fa-phone"></i>
+                <span class="ml-2">(941) 270‑4169</span>
+              </a>
+              <a href="#" class="text-blue-600 hover:underline mt-2">View Full Profile</a>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="doctor-card">
+            <div class="flex flex-col items-center">
+              <div class="avatar">
+                <img
+                  src="https://mdxvitals-res.cloudinary.com/private_images/q_auto/professionals/1761515/photo.jpg"
+                  alt="Dr. Khadim"
+                  class="rounded-full w-full h-full object-cover border border-gray-200" />
+              </div>
+              <h3 class="text-xl font-semibold text-gray-900">Dr. Ghazanfar Khadim, MD</h3>
+              <p class="text-sm text-gray-600">
+                Cardiovascular Disease, Internal Medicine, Interventional Cardiology, Cardiovascular Surgery,
+                Interventional Pain Medicine, Regenerative Medicine
+              </p>
+              <div class="flex items-center space-x-2 text-sm mt-2">
+                <span class="font-medium text-gray-800">5.0</span>
+                <div class="flex text-yellow-400 space-x-0.5">★★★★★</div>
+                <a href="#" class="text-blue-500">7 Ratings</a>
+                <svg
+                  data-v-01fcd4ce=""
+                  width="14"
+                  height="12"
+                  viewBox="0 0 14 12"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M13.6116 2.26989C13.4826 2.10216 13.3139 1.96504 13.119 1.86936C12.9241 1.77368 12.7083 1.72207 12.4886 1.71861H9.25237C9.15559 1.22624 8.87551 0.782636 8.46259 0.467703C8.04967 0.152769 7.53104 -0.0127922 7.00013 0.00084055C6.46923 -0.0127504 5.95063 0.152826 5.53772 0.467751C5.12481 0.782676 4.84472 1.22626 4.7479 1.71861H1.51169C1.29194 1.72206 1.07605 1.77366 0.881095 1.86934C0.686143 1.96502 0.517472 2.10215 0.388421 2.26989C0.127843 2.60385 -0.00854654 3.00956 0.000415012 3.42407V10.2951C-0.00841496 10.7095 0.127965 11.1151 0.388421 11.4491C0.517487 11.6168 0.686167 11.7538 0.881121 11.8495C1.07608 11.9451 1.29196 11.9967 1.51169 12.0001H12.4886C12.7082 11.9966 12.924 11.9451 13.1188 11.8495C13.3137 11.754 13.4824 11.6171 13.6116 11.4496C13.8721 11.1155 14.0085 10.7097 13.9996 10.2951V3.42407C14.0087 3.00954 13.8723 2.60378 13.6116 2.26989ZM7.00014 1.12133C7.21545 1.11113 7.42897 1.16276 7.61248 1.26941C7.796 1.37605 7.94088 1.53269 8.02798 1.71861H5.97233C6.05939 1.53267 6.20426 1.37602 6.38778 1.26937C6.5713 1.16272 6.78483 1.1111 7.00013 1.12132L7.00014 1.12133ZM12.8065 3.42407V5.00623L7.00014 7.66366L1.19377 5.00622V3.42407C1.18833 3.25409 1.23921 3.08674 1.33934 2.9453C1.42508 2.83911 1.48804 2.83911 1.51169 2.83911H12.4886C12.5125 2.83911 12.5758 2.83911 12.6612 2.94503C12.7613 3.0866 12.812 3.25404 12.8065 3.42407L12.8065 3.42407ZM12.8065 6.25563V10.2952C12.812 10.4649 12.7614 10.632 12.6618 10.7734C12.5752 10.8799 12.5125 10.8799 12.4886 10.8799H1.51169C1.48804 10.8799 1.4248 10.8799 1.33934 10.774C1.23932 10.6325 1.18845 10.4652 1.19377 10.2952V6.25566L6.73862 8.79673C6.82017 8.83371 6.9095 8.85291 6.99999 8.85291C7.09048 8.85291 7.17982 8.83371 7.26137 8.79673L12.8065 6.25563Z"
+                    fill="#7384D8"></path>
+                </svg>
+                <span class="text-gray-600">34 Years Exp</span>
+              </div>
+            </div>
+            <div class="space-y-2 flex flex-col">
+              <a href="tel:8634742246" class="btn-primary mt-4 w-full">
+                <i class="fa-solid fa-phone"></i>
+                <span class="ml-2">(863) 474‑2246</span>
+              </a>
+              <a href="#" class="text-blue-600 hover:underline mt-2">View Full Profile</a>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="doctor-card">
+            <div class="flex flex-col items-center">
+              <div class="avatar">
+                <img
+                  src="https://img.lb.wbmdstatic.com/lhd/provider_prod/3988641_providerprofileimage_5fd947fe-531b-486d-9bea-6ccaf952b395.png"
+                  alt="Dr. Patel"
+                  class="rounded-full w-full h-full object-cover border border-gray-200" />
+              </div>
+              <h3 class="text-xl font-semibold text-gray-900">Dr. Devan Arvind Patel, PharmD</h3>
+              <p class="text-sm text-gray-600">
+                Clinical Pharmacology, Naturopathy, Integrative Medicine, Internal Medicine, Preventative Medicine,
+                Emergency Medicine, Family Medicine, Interventional Pain Medicine, Addiction Medicine, Adolescent
+                Medicine
+              </p>
+              <div class="flex items-center space-x-2 text-sm mt-2">
+                <span class="font-medium text-gray-800">5.0</span>
+                <div class="flex text-yellow-400 space-x-0.5">★★★★★</div>
+                <a href="#" class="text-blue-500">2 Ratings</a>
+              </div>
+            </div>
+            <div class="space-y-2 flex flex-col">
+              <a href="tel:8137085372" class="btn-primary mt-4 w-full">
+                <i class="fa-solid fa-phone"></i>
+                <span class="ml-2">(813) 708‑5372</span>
+              </a>
+              <a href="#" class="text-blue-600 hover:underline mt-2">View Full Profile</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- search bar footer -->
+      <div class="-mt-40 h-[280px] pb-12 bg-[#000625] flex flex-row items-end">
+        <div class="flex flex-row justify-center gap-4 items-center w-full">
+          <p class="text-white text-3xl flex gap-2">
+            Find more top doctors on
+            <img
+              src="https://img.wbmdstatic.com/vim/live/webmd/consumer_assets/site_images/logos/webmd/web/webmd_logo_white.svg"
+              alt="WebMD logo"
+              class="h-6 mt-1" />Care
+          </p>
+          <div class="flex w-auto h-12">
+            <input
+              type="text"
+              placeholder="Lakeland, FL 33813"
+              class="flex‑1 px-4 py-2 rounded-l-md border border-gray-300 focus:outline-none" />
+            <button
+              class="bg-blue-600 hover:bg-btnhover text-white text-lg px-5 py-2 rounded-r-md flex flex-row items-center gap-2">
+              <i class="fa-solid fa-magnifying-glass"></i>Search
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="bg-[#000625] text-white">
+      <div class="container py-12 space-y-6">
+        <!-- ➤ Newsletter + Social + App badges -->
+        <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-10">
+          <!-- Newsletter signup -->
+          <div class="md:flex-1 space-y-4">
+            <h2 class="text-2xl font-semibold">Sign up for our free Good Health Newsletter</h2>
+            <p class="text-gray-200">Get wellness tips to help you live happier and healthier</p>
+            <form action="#" class="mt-6 flex max-w-lg">
+              <input type="email" placeholder="Enter your email address" class="input-email" />
+              <button type="submit" class="btn-subscribe">Subscribe</button>
+            </form>
+            <p class="mr-32 text-sm text-gray-300 leading-snug">
+              By clicking Subscribe, I agree to the WebMD
+              <a href="#" class="underline">Terms & Conditions</a> & 
+              <a href="#" class="underline">Privacy Policy</a> and understand that I may opt out of WebMD subscriptions
+              at any time. This site is protected by reCAPTCHA and the Google
+              <a href="#" class="underline">Privacy Policy</a> and
+              <a href="#" class="underline">Terms of Service</a> apply.
+            </p>
+          </div>
+
+          <!-- Social + App stores -->
+          <div class="flex flex-col md:flex-row md:items-start">
+            <!-- Social -->
+            <div
+              class="flex flex-col items-start md:items-center space-y-4 md:space-y-6 md:pr-8 md:border-r md:border-gray-400">
+              <span class="font-medium">Follow WebMD on Social Media</span>
+              <div class="flex space-x-4">
+                <!-- replace these with your SVGs or img tags -->
+                <a href="#" class="text-2xl hover:text-gray-300"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="text-2xl hover:text-gray-300"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-2xl hover:text-gray-300"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-2xl hover:text-gray-300"><i class="fab fa-tiktok"></i></a>
+                <a href="#" class="text-2xl hover:text-gray-300"><i class="fab fa-pinterest"></i></a>
+                <a href="#" class="text-2xl hover:text-gray-300"><i class="fab fa-whatsapp"></i></a>
+              </div>
+            </div>
+            <!-- App badges -->
+            <div class="mt-8 md:mt-0 md:pl-8 flex flex-col items-start space-y-4">
+              <span class="font-medium">Download WebMD App</span>
+              <div class="flex space-x-4">
+                <a href="#">
+                  <img
+                    src="https://img.webmd.com/vim/live/webmd/consumer_assets/site_images/tocs/community/thumbnails/ios-dwnld.png?resize=90:32"
+                    alt="Download on the App Store"
+                    class="h-10" />
+                </a>
+                <a href="#">
+                  <img
+                    src="https://img.webmd.com/vim/live/webmd/consumer_assets/site_images/tocs/community/thumbnails/android-dwnld.png?resize=90:32"
+                    alt="Get it on Google Play"
+                    class="h-10" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ➤ Footer nav -->
+        <nav>
+          <ul class="flex flex-wrap gap-6 text-sm">
+            <li><a href="#" class="hover:underline">Policies</a></li>
+            <li><a href="#" class="hover:underline">About</a></li>
+            <li>
+              <a href="#" class="px-4 py-1 bg-gray-200 text-[#00157c] rounded-md hover:bg-gray-300">
+                For Advertisers
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="border-t border-gray-400"></div>
+
+        <!-- ➤ Advertise & Certifications -->
+        <div class="flex flex-col md:flex-row md:justify-between items-center md:items-start space-y-6 md:space-y-0">
+          <a href="#" class="hover:underline">Advertise with Us</a>
+          <div class="flex space-x-8">
+            <!-- replace with your actual certification badges -->
+            <img
+              src="https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/layout/shared/tag-registered.png?resize=*:60px"
+              alt="Certified Tag"
+              class="h-12" />
+            <img
+              src="https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/oncology/1/footer-images/ad-choice.png"
+              alt="AdChoices"
+              class="h-8" />
+          </div>
+        </div>
+
+        <div class="border-t border-gray-400"></div>
+
+        <!-- ➤ Bottom copyright -->
+        <div
+          class="flex flex-col md:flex-row md:justify-between items-center text-xs text-gray-300 space-y-4 md:space-y-0">
+          <p>
+            © 2005 – 2025 WebMD LLC, an Internet Brands company. All rights reserved. WebMD does not provide medical
+            advice, diagnosis or treatment. See additional
+            <a href="#" class="underline">information</a>.
+          </p>
+          <img
+            src="https://img.wbmdstatic.com/vim/live/webmd/consumer_assets/site_images/logos/webmd/web/webmd_logo_white.svg"
+            alt="WebMD logo"
+            class="h-7" />
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
