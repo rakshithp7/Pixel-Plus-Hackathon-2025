@@ -430,9 +430,30 @@
             <i class="fa-regular fa-envelope text-[16px]"></i><span>Subscribe</span>
           </button>
           <a href="#">Log In</a>
-          <button class="p-2">
-            <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-          </button>
+          <div class="relative">
+            <!-- Search Toggle Button -->
+            <button id="searchToggle" class="p-2">
+              <i id="searchIcon" class="fa-solid fa-magnifying-glass fa-lg"></i>
+              <i id="closeIcon" class="fa-solid fa-xmark fa-lg hidden"></i>
+            </button>
+
+            <!-- Search Box (Hidden by Default) -->
+            <div
+              id="searchBox"
+              class="absolute -top-1 right-9 flex gap-2 bg-white pl-2 py-1 pr-1 rounded shadow opacity-0 scale-95 pointer-events-none transition-all duration-200 ease-in-out dark:bg-gray-200">
+              <input
+                id="searchInput"
+                type="text"
+                placeholder="Ask WebMD"
+                class="px-2 py-1 text-black rounded w-[340px] focus:outline-none dark:bg-gray-200" />
+              <button
+                id="searchBtn"
+                class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 dark:bg-gray-800">
+                Search
+              </button>
+            </div>
+          </div>
+
           <button id="theme-toggle">
             <i id="theme-icon" class="fa-solid fa-circle-half-stroke transform transition-transform duration-300"></i>
           </button>
@@ -1714,11 +1735,48 @@
   </body>
 
   <script>
-    const btn = document.getElementById('theme-toggle');
-    const icon = document.getElementById('theme-icon');
-    btn.addEventListener('click', () => {
+    // SEARCH FEATURE
+    const searchIcon = document.getElementById('searchIcon');
+    const closeIcon = document.getElementById('closeIcon');
+    const toggle = document.getElementById('searchToggle');
+    const box = document.getElementById('searchBox');
+    const searchBtn = document.getElementById('searchBtn');
+    const input = document.getElementById('searchInput');
+
+    toggle.addEventListener('click', () => {
+      const isVisible = box.classList.contains('opacity-100');
+
+      if (isVisible) {
+        box.classList.remove('opacity-100', 'scale-100');
+        box.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
+        searchIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+      } else {
+        box.classList.remove('opacity-0', 'scale-95', 'pointer-events-none');
+        box.classList.add('opacity-100', 'scale-100');
+        searchIcon.classList.add('hidden');
+        closeIcon.classList.remove('hidden');
+        input.focus();
+      }
+    });
+
+    searchBtn.addEventListener('click', () => {
+      const query = input.value.trim();
+      if (query) {
+        const url = `https://www.webmd.com/search/search_results/default.aspx?query=${encodeURIComponent(query)}`;
+        window.open(url, '_blank');
+      }
+      box.classList.remove('opacity-100', 'scale-100');
+      box.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
+      searchIcon.classList.remove('hidden');
+      closeIcon.classList.add('hidden');
+    });
+    // DARK THEME TOGGLE
+    const themeBtn = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    themeBtn.addEventListener('click', () => {
       document.documentElement.classList.toggle('dark');
-      icon.classList.toggle('rotate-180');
+      themeIcon.classList.toggle('rotate-180');
       // optionally persist choice:
       localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
     });
